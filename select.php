@@ -9,6 +9,7 @@
 			//conectamos con el servidor de base de datos y seleccionamos la base de datos
 			$conexion=mysqli_connect("localhost","root","","bdpruebas") or
 				die("Problemas con la conexión");
+			//esto establece el formato del lenguaje a utf-8 para mostrar asi las tildes
 			if (!$conexion->set_charset("utf8")) {
 				printf("Error cargando el conjunto de caracteres utf8: %s\n", $conexion->error);
 				exit();
@@ -26,18 +27,18 @@
 			while ($reg=mysqli_fetch_array($registros))
 			{
 				//imprimimos los datos del array
-			  echo "Codigo:".$reg['codigo']."<br>";
-			  echo "Nombre:".$reg['nombre']."<br>";
-			  echo "Mail:".$reg['mail']."<br>";
-			  echo "Curso:";
-			  // a apartir del codigo del curso del alumnos obtendremos con otra consulta el nombre de dicho curso.
-			  $registros1=mysqli_query($conexion,"select nombreCurso from cursos where codigo =  $reg[codigocurso]") 
-				or die("Problemas en el select:".mysqli_error($conexion));
+				echo "Codigo:".$reg['codigo']."<br>";
+				echo "Nombre:".$reg['nombre']."<br>";
+				echo "Mail:".$reg['mail']."<br>";
+				echo "Curso:";
+				// a apartir del codigo del curso del alumnos obtendremos con otra consulta el nombre de dicho curso.
+				$registros1=mysqli_query($conexion,"select nombreCurso from cursos where codigo =  $reg[codigocurso]") 
+					or die("Problemas en el select:".mysqli_error($conexion));
 				while($reg1=mysqli_fetch_array($registros1)){
 					echo $reg1['nombreCurso']."<br>";
 				}
-			  echo "<br>";
-			  echo "<hr>";
+				echo "<br>";
+				echo "<hr>";
 			}
 
 			mysqli_close($conexion);

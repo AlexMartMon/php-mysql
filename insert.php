@@ -8,6 +8,7 @@
 			# Establece conexion con la base de datos, como es de mysql usamos mysqli_connect 
 			$conexion=mysqli_connect("localhost","root","","bdpruebas") or
 				die("Problemas con la conexión");
+			//esto establece el formato del lenguaje a utf-8 para mostrar asi las tildes
 			if (!$conexion->set_charset("utf8")) {
 				printf("Error cargando el conjunto de caracteres utf8: %s\n", $conexion->error);
 				exit();
